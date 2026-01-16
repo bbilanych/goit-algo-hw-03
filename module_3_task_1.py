@@ -8,8 +8,18 @@
 # Для роботи з датами слід використовувати модуль datetime Python.
 
 from datetime import datetime
+
+
 def get_days_from_today(date):
-    today = datetime.today()
-    return (today - datetime.strptime(date, "%Y-%m-%d")).days
+    """
+    Повертає кількість днів між сьогоднішньою датою та датою у форматі 'YYYY-MM-DD'.
+    У разі некоректного формату вхідних даних не падає з помилкою, а повертає None.
+    """
+    try:
+        today = datetime.today()
+        return (today - datetime.strptime(date, "%Y-%m-%d")).days
+    except (TypeError, ValueError):
+        # Некоректний формат або тип даних — функція не падає
+        return None
 
 print(get_days_from_today("2021-10-09"))
